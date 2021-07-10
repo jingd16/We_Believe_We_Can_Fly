@@ -65,7 +65,6 @@ Markdown==3.3.4
 MarkupSafe==2.0.1
 matplotlib==3.3.4
 mistune==0.8.4
-mkl-service==2.3.0
 mrjob==0.6.1
 multidict==5.1.0
 nb-conda-kernels==2.3.1
