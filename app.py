@@ -122,6 +122,7 @@ def preprocessDataAndPredict(Gender,
     
     #reshape array
     test_data = test_data.reshape(1,-1)
+    test_data = test_data.astype(np.float64)
     print(test_data)
     
     #open file
