@@ -1,0 +1,126 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <!-- Starts image section -->
+    <div class="row justify-content-md-center mb-4">
+        <h2 class='text-primary'>Choose below options:</h2>
+    </div>
+    
+    <!-- <div class="row">
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <img src="{{url_for('static', filename='images/iris_setosa.jpg')}}" class="img-thumbnail" />
+                <div class="caption">
+                     <p><strong>Iris Setosa</strong></p>
+                   </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <img src="{{url_for('static', filename='images/iris_versicolor.jpg')}}" class="img-thumbnail" />
+                <div class="caption">
+                     <p><strong>Iris Versicolor</strong></p>
+                   </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <img src="{{url_for('static', filename='images/iris_virginica.jpg')}}" class="img-thumbnail" />
+                <div class="caption">
+                     <p><strong>Iris Virginica</strong></p>
+                   </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- Ends image section -->
+    
+    <!-- Starts form section -->
+    <div class="form-container ">
+        <form class="form-horizontal" action = "/predict/" method="post">
+        
+       
+
+            <div class="form-group row">
+              <label class="control-label col-sm-2" for="Seat_Comfort">Seat Comfort:</label>
+              <div class="col-sm-4">          
+                <input type="text" class="form-control" id="Seat_Comfort" name="Seat_Comfort">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="control-label col-sm-2" for="Dep_Arri_Time">Departure and Arrival Time Convenient</label>
+              <div class="col-sm-4">          
+                <input type="text" class="form-control" id="Dep_Arri_Time" name="Dep_Arri_Time">
+              </div>
+            </div>
+
+
+            <div class="form-group row">
+              <label class="control-label col-sm-2" for="Food_Drink">Food and Drink</label>
+              <div class="col-sm-4">          
+                <input type="text" class="form-control" id="Food_Drink" name="Food_Drink">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="control-label col-sm-2" for="Gate_Location">Gate Location</label>
+              <div class="col-sm-4">          
+                <input type="text" class="form-control" id="Gate_Location" name="Gate_Location">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="control-label col-sm-2" for="Wifi">Inflight Wifi</label>
+              <div class="col-sm-4">          
+                <input type="text" class="form-control" id="Wifi" name="Wifi">
+              </div>
+            </div>
+
+
+            <div class="form-group row">
+              <label class="control-label col-sm-2" for="Inflight_Entertaiment">Inflight Entertainment</label>
+              <div class="col-sm-4">          
+                <input type="text" class="form-control" id="Inflight_Entertaiment" name="Inflight_Entertaiment">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="control-label col-sm-2" for="Online_Support">Online Support</label>
+              <div class="col-sm-4">          
+                <input type="text" class="form-control" id="Online_Support" name="Online_Support">
+              </div>
+            </div>
+
+   
+
+
+
+
+
+
+
+
+
+
+            
+
+
+
+
+
+            
+            <div class="form-group row"> 
+            <label class="control-label col-sm-2" for="">&nbsp;</label>                
+              <div class="col-sm-offset-2 col-sm-4">
+                <button type="submit" class="btn btn-primary">Predict</button>
+              </div>
+            </div>
+          </form>
+        <!-- Ends form section -->
+        
+        
+    </div>
+
+
+{% endblock %}
