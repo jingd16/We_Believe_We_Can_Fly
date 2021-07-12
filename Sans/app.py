@@ -122,7 +122,7 @@ def preprocessDataAndPredict(Gender,
     test_data = [0 if val is None else val for val in test_data]
     print(test_data)
 
-    file = open("imputer.pkl","rb")
+    file = open("output/imputer.pkl","rb")
     
     #load trained model
     #imputer = joblib.load(file)
@@ -138,7 +138,7 @@ def preprocessDataAndPredict(Gender,
     print(test_data)
     
     #open file
-    file = open("Pickle_RL_Model.pkl","rb")
+    file = open("output/Pickle_RL_Model.pkl","rb")
     
     #load trained model
     trained_model = joblib.load(file)

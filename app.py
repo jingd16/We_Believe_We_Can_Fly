@@ -34,10 +34,11 @@ def predict():
         Online_Boarding = request.form.get('Online_Boarding')
         Dep_Delay = request.form.get('Dep_Delay')
         Arri_Delay = request.form.get('Arri_Delay')
+        Eco_plus = request.form.get('Eco_plus')
 
         #call preprocessDataAndPredict and pass inputs
-        try:
-            prediction = preprocessDataAndPredict(Gender, 
+      
+        prediction = preprocessDataAndPredict(Gender, 
                                                 Customer_Type,
                                                 Age,
                                                 Type_Travel,
@@ -58,15 +59,14 @@ def predict():
                                                 Cleanliness,
                                                 Online_Boarding,
                                                 Dep_Delay,
-                                                Arri_Delay)
-            #pass prediction to template
-            return render_template('predict.html', prediction = prediction)
+                                                Arri_Delay,
+                                                Eco_plus)
+        #pass prediction to template
+        return render_template('predict.html', prediction = prediction)
    
-        except ValueError:
-            return "Please Enter valid values"
+        
   
-        pass
-    pass
+      
 
 def preprocessDataAndPredict(Gender,
                             Customer_Type,
@@ -89,7 +89,8 @@ def preprocessDataAndPredict(Gender,
                             Cleanliness,
                             Online_Boarding,
                             Dep_Delay,
-                            Arri_Delay):
+                            Arri_Delay,
+                            Eco_plus):
     
     #keep all inputs in array
     test_data = [Gender,
@@ -113,9 +114,20 @@ def preprocessDataAndPredict(Gender,
                 Cleanliness,
                 Online_Boarding,
                 Dep_Delay,
-                Arri_Delay]
+                Arri_Delay,
+                Eco_plus]
                 
+   #print(test_data)
+
+    test_data = [0 if val is None else val for val in test_data]
     print(test_data)
+
+    file = open("imputer.pkl","rb")
+    
+    #load trained model
+    #imputer = joblib.load(file)
+    
+    #test_data = imputer.transform(test_data)
     
     #convert value data into numpy array
     test_data = np.array(test_data)
@@ -126,7 +138,7 @@ def preprocessDataAndPredict(Gender,
     print(test_data)
     
     #open file
-    file = open("output/fulldata.pkl","rb")
+    file = open("Pickle_RL_Model.pkl","rb")
     
     #load trained model
     trained_model = joblib.load(file)
