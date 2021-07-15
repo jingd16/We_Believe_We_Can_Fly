@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <title>We Believe We Can Fly</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="../static/css/style.css">
+</head>
+
+
+<body>
+  
+  <div class="wrapper">
+    <header class="header">
+      <div class="hearder_content">
+        <span onclick="openNav()"><img class="icon" src="../static/css/headericon.png" alt="icon" style="width:50px;height:50px;"></span>
+      </div>
+    </header>
+
+    <div id="mySidenav" class="sidenav">
+      <br>
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="padding-top:60px;">&times;</a>
+      <a href="{{ url_for('.home') }}"><i class="fa fa-fw fa-plane"></i> Home</a>
+      <a href="{{ url_for('.predict_page') }}"><i class="fa fa-fw fa-address-book"></i> Predict Your Customer</a>
+      <a href="#"><i class="fa fa-fw fa-users"></i> Customer Profiles</a>
+      <ul style="padding-left: 25px;">
+        <a href="{{ url_for('.customer1') }}" style="font-size: 14px;"><i class="fa fa-fw fa-star"></i> Loyal Customer</a>
+        <a href="{{ url_for('.customer2') }}" style="font-size: 14px;"><i class="fa fa-fw fa-suitcase"></i> Business Class Customer</a>
+        <a href="{{ url_for('.customer3') }}" style="font-size: 14px;"><i class="fa fa-fw fa-user"></i> Eco Plus Class Loyal Customer</a>
+        <a href="{{ url_for('.customer4') }}" style="font-size: 14px;"><i class="fa fa-fw fa-star-o"></i> Eco Plus Class Disloyal Customer</a>
+      </ul>
+    </div>
+
+
+    <a id="Top"></a>
+    <div class="hero-predict text-center" id="header1">
+      <h1>Predict Your Customer</h1>
+    </div>
+
+    <section class="section">
+      <div class="textbox-light">
+        <h3 style="text-align: center;">Model Overview</h3>
+
+        <br>
+        <p class="indent">
+              We used two machine learning models in order to create the customer satisfaction prediction tool. Below image shows the correlation 
+          between different factors affecting the customer satisfaction including the demographic details and different measures of satisfaction 
+          of services related to air travel.
+        </p>
+        <img style="margin-left: 20%;" src="../static/css/correlation.png" alt="correlation" width="1007" height="451">
+        <br><br>
+        <p class="indent"> 
+              Trials of various machine learning models including logistic regression, decision tree, 
+          random forrest and neural network shown that the last 3 have accuracy of over 90%. For the final prediction tool we are using 
+          random forrest with 200 estimators, because it has 95% score while still being relatively simple and not taking that much time to load 
+          as neural network. Logistic Regession model allows to determine which parameters have the most effect on the final prediction outcome, 
+          however the overall model score is 75%. Logistic Regession shows that the following services have the biggest impact on the prediction outcome:
+          Inflight entertainment, Seat comfort, On-board service, Checkin service, therefore we selected these four for our prediction tool. 
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+
+      <div class="predict-header">
+        <h2 style="text-align: center;">Predict Customer Satisfaction</h3>
+      </div>
+
+
+      <div class="textbox-light" id="exactlocation">
+        <a id="TagIWantToLoadTo">
+        <form class="form-horizontal" action="{{ url_for('predict') }}" method="post">
+          
+          <br><br>
+
+          <h4 style="text-align: center;">Select Demographic Parameters:</h4>
+          
+          <br><br><br>
+
+          <div class="row">
+
+            <div class="col">
+              <label class="control-label" for="gender">Gender:</label>
+              <select name="gender" id="gender" class="form-control">
+                <option value="1" {% if dd0 == 1 %} selected {% endif %} >Male</option>
+                <option value="0" {% if dd0 == 0 %} selected {% endif %}>Female</option>
+              </select>
+            </div>
+
+            <div class="col">
+              <label class="control-label" for="loyal">Customer Type:</label>
+              <select id="loyal" name="loyal" class="form-control">
+                <option value="0" {% if dd1 == 0 %} selected {% endif %}>Loyal</option>
+                <option value="1" {% if dd1 == 1 %} selected {% endif %}>Not Loyal</option>
+              </select>
+            </div>
+
+            <div class="col">
+              <label class="control-label" for="age">Age:</label>
+              <select id="age" name="age" class="form-control">
+                <option value="10" {% if dd2 == 10 %} selected {% endif %}>10</option>
+                <option value="20" {% if dd2 == 20 %} selected {% endif %}>20</option>
+                <option value="30" {% if dd2 == 30 %} selected {% endif %}>30</option>
+                <option value="40" {% if dd2 == 40 %} selected {% endif %}>40</option>
+                <option value="50" {% if dd2 == 50 %} selected {% endif %}>50</option>
+                <option value="60" {% if dd2 == 60 %} selected {% endif %}>60</option>
+                <option value="70" {% if dd2 == 70 %} selected {% endif %}>70</option>
+                <option value="80" {% if dd2 == 80 %} selected {% endif %}>80</option>
+              </select>
+            </div>
+
+            <div class="col">
+              <label class="control-label" for="travel-type">Type of Travel:</label>
+              <select id="travel-type" name="travel-type" class="form-control"> 
+                <option value="0" {% if dd3 == 0 %} selected {% endif %}>Business Trip</option>
+                <option value="1" {% if dd3 == 1 %} selected {% endif %}>Personal Trip</option>
+              </select>
+            </div>
+
+            <div class="col">
+              <label class="control-label" for="class">Class:</label>
+              <select id="class" name="class" class="form-control">
+                <option value="0" {% if dd4 == 0 %} selected {% endif %}>Business</option>
+                <option value="2" {% if dd4 == 2 %} selected {% endif %}>Eco Plus</option>
+                <option value="1" {% if dd4 == 1 %} selected {% endif %}>Eco</option>
+              </select>
+            </div>
+
+          </div>
+
+          <br><br><br><br>
+
+          <h4 style="text-align: center;">Select Services Satisfaction Level:</h4>
+
+          <br><br><br>
+
+          <div class="row">
+
+            <div class="col">
+              <label class="control-label" for="inflight-entertainment">Inflight Entertainment:</label>
+              <select name="inflight-entertainment" id="inflight-entertainment" class="form-control">
+                <option value="1" {% if dd5 == 1 %} selected {% endif %}>1</option>
+                <option value="2" {% if dd5 == 2 %} selected {% endif %}>2</option>
+                <option value="3" {% if dd5 == 3 %} selected {% endif %}>3</option>
+                <option value="4" {% if dd5 == 4 %} selected {% endif %}>4</option>
+                <option value="5" {% if dd5 == 5 %} selected {% endif %}>5</option>
+              </select>
+            </div>
+
+            <div class="col">
+              <label class="control-label" for="seat-comfort">Seat Comfort:</label>
+              <select id="seat-comfort"" name="seat-comfort"" class="form-control">
+                <option value="1" {% if dd6 == 1 %} selected {% endif %}>1</option>
+                <option value="2" {% if dd6 == 2 %} selected {% endif %}>2</option>
+                <option value="3" {% if dd6 == 3 %} selected {% endif %}>3</option>
+                <option value="4" {% if dd6 == 4 %} selected {% endif %}>4</option>
+                <option value="5" {% if dd6 == 5 %} selected {% endif %}>5</option>
+              </select>
+            </div>
+
+            <div class="col">
+              <label class="control-label" for="on-board-service">On-board Service:</label>
+              <select id="on-board-service" name="on-board-service" class="form-control">
+                <option value="1" {% if dd7 == 1 %} selected {% endif %}>1</option>
+                <option value="2" {% if dd7 == 2 %} selected {% endif %}>2</option>
+                <option value="3" {% if dd7 == 3 %} selected {% endif %}>3</option>
+                <option value="4" {% if dd7 == 4 %} selected {% endif %}>4</option>
+                <option value="5" {% if dd7 == 5 %} selected {% endif %}>5</option>
+              </select>
+            </div>
+
+            <div class="col">
+              <label class="control-label" for="checkin-service">Checkin Service:</label>
+              <select id="checkin-service" name="checkin-service" class="form-control">
+                <option value="1" {% if dd8 == 1 %} selected {% endif %}>1</option>
+                <option value="2" {% if dd8 == 2 %} selected {% endif %}>2</option>
+                <option value="3" {% if dd8 == 3 %} selected {% endif %}>3</option>
+                <option value="4" {% if dd8 == 4 %} selected {% endif %}>4</option>
+                <option value="5" {% if dd8 == 5 %} selected {% endif %}>5</option>
+              </select>
+            </div>
+
+          </div>
+
+          <br><br><br><br>
+
+          <div id=container>
+
+            <button type="submit" class="btn btn-primary">Predict</button>
+
+          </div>
+
+          <br><br><br><br>
+
+          <div id=container2>
+
+            <h1 id="prediction-text" style ="color: {{color}} ; font-weight:bold">{{prediction}}</h1>
+
+          </div>
+
+        </form>
+
+      </div>
+    </section>
+    
+    <br>
+    
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="./static/js/app.js"></script>
+  <script src="../static/js/sidebar.js"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
+  <script type="text/javascript">
+    myVar = jump({{anchor|tojson}})
+  </script>
+
+</body>
+
+</html>
+

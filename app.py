@@ -1,155 +1,109 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import numpy as np
 import joblib
+
+deafault_dict = {"Gender": 1, 
+           "Customer Type": 0, 
+           "Age": 40,
+           "Type of Travel": 0, 
+           "Class": 1,
+           "Seat comfort": 3, 
+           "Departure/Arrival time convenient": 3, 
+           "Food and drink": 3,
+           "Gate location": 3, 
+           "Inflight wifi service": 3, 
+           "Inflight entertainment": 3,
+           "Online support": 3, 
+           "Ease of Online booking": 3, 
+           "On-board service": 3, 
+           "Leg room service": 3, 
+           "Baggage handling": 3,
+           "Checkin service": 3, 
+           "Cleanliness": 3, 
+           "Online boarding": 3}
+
+
 app = Flask(__name__)
+
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('index.html')
 
+@app.route('/index_customer1')
+def customer1():
+    return render_template('index_customer1.html')
 
-@app.route('/predict/', methods=['GET','POST'])
+@app.route('/index_customer2')
+def customer2():
+    return render_template('index_customer2.html')
+
+@app.route('/index_customer3')
+def customer3():
+    return render_template('index_customer3.html')
+
+@app.route('/index_customer4')
+def customer4():
+    return render_template('index_customer4.html')
+
+@app.route('/index_predict')
+def predict_page():
+    return render_template('index_predict.html', anchor="Top")
+
+@app.route('/predict', methods=['GET','POST'])
 def predict():
-    
-    if request.method == "POST":
-        #get form data
-        Gender = request.form.get('Gender')
-        Customer_Type = request.form.get('Customer_Type')
-        Age = request.form.get('Age')
-        Type_Travel = request.form.get('Type_Travel')
-        Class = request.form.get('Class')
-        Flight_Distance = request.form.get('Flight_Distance')
-        Seat_Comfort = request.form.get('Seat_Comfort')
-        Dep_Arri_Time = request.form.get('Dep_Arri_Time')
-        Food_Drink = request.form.get('Food_Drink')
-        Gate_Location = request.form.get('Gate_Location')
-        Wifi = request.form.get('Wifi')
-        Inflight_Entertaiment = request.form.get('Inflight_Entertaiment')
-        Online_Support = request.form.get('Online_Support')
-        Ease_Booking = request.form.get('Ease_Booking')
-        Onboard_Service = request.form.get('Onboard_Service')
-        Leg_Room = request.form.get('Leg_Room')
-        Beg_Handle = request.form.get('Beg_Handle')
-        Checkin = request.form.get('Checkin')
-        Cleanliness = request.form.get('Cleanliness')
-        Online_Boarding = request.form.get('Online_Boarding')
-        Dep_Delay = request.form.get('Dep_Delay')
-        Arri_Delay = request.form.get('Arri_Delay')
-        Eco_plus = request.form.get('Eco_plus')
+    global deafault_dict
 
-        #call preprocessDataAndPredict and pass inputs
-      
-        prediction = preprocessDataAndPredict(Gender, 
-                                                Customer_Type,
-                                                Age,
-                                                Type_Travel,
-                                                Class,
-                                                Flight_Distance,
-                                                Seat_Comfort,
-                                                Dep_Arri_Time,
-                                                Food_Drink,
-                                                Gate_Location,
-                                                Wifi,
-                                                Inflight_Entertaiment,
-                                                Online_Support,
-                                                Ease_Booking,
-                                                Onboard_Service,
-                                                Leg_Room,
-                                                Beg_Handle,
-                                                Checkin,
-                                                Cleanliness,
-                                                Online_Boarding,
-                                                Dep_Delay,
-                                                Arri_Delay,
-                                                Eco_plus)
-        #pass prediction to template
-        return render_template('predict.html', prediction = prediction)
-   
-        
-  
-      
+    # if request.method == "POST":
+    int_features = [int(x) for x in request.form.values()]
 
-def preprocessDataAndPredict(Gender,
-                            Customer_Type,
-                            Age,
-                            Type_Travel,
-                            Class,
-                            Flight_Distance,
-                            Seat_Comfort,
-                            Dep_Arri_Time,
-                            Food_Drink,
-                            Gate_Location,
-                            Wifi,
-                            Inflight_Entertaiment,
-                            Online_Support,
-                            Ease_Booking,
-                            Onboard_Service,
-                            Leg_Room,
-                            Beg_Handle,
-                            Checkin,
-                            Cleanliness,
-                            Online_Boarding,
-                            Dep_Delay,
-                            Arri_Delay,
-                            Eco_plus):
-    
-    #keep all inputs in array
-    test_data = [Gender,
-                Customer_Type,
-                Age,
-                Type_Travel,
-                Class,
-                Flight_Distance,
-                Seat_Comfort,
-                Dep_Arri_Time,
-                Food_Drink,
-                Gate_Location,
-                Wifi,
-                Inflight_Entertaiment,
-                Online_Support,
-                Ease_Booking,
-                Onboard_Service,
-                Leg_Room,
-                Beg_Handle,
-                Checkin,
-                Cleanliness,
-                Online_Boarding,
-                Dep_Delay,
-                Arri_Delay,
-                Eco_plus]
-                
-   #print(test_data)
+    deafault_dict["Gender"] = int_features[0]
+    deafault_dict["Customer Type"] = int_features[1]
+    deafault_dict["Age"] = int_features[2]
+    deafault_dict["Type of Travel"] = int_features[3]
+    deafault_dict["Class"] = int_features[4]
+    deafault_dict["Inflight entertainment"] = int_features[5]
+    deafault_dict["Seat comfort"] = int_features[6]
+    deafault_dict["On-board service"] = int_features[7]
+    deafault_dict["Checkin service"] = int_features[8] 
+ 
+    new_data = np.array([*deafault_dict.values()])
+    new_data = new_data.reshape(1, -1)
 
-    test_data = [0 if val is None else val for val in test_data]
-    print(test_data)
+    # Gender = request.form.values()
 
-    file = open("imputer.pkl","rb")
-    
-    #load trained model
-    #imputer = joblib.load(file)
-    
-    #test_data = imputer.transform(test_data)
-    
-    #convert value data into numpy array
-    test_data = np.array(test_data)
-    
-    #reshape array
-    test_data = test_data.reshape(1,-1)
-    test_data = test_data.astype(np.float64)
-    print(test_data)
+    print(int_features)
+    print(new_data)
     
     #open file
-    file = open("Pickle_RL_Model.pkl","rb")
+    file = open("ML_random_forest_200.pkl","rb")
     
     #load trained model
     trained_model = joblib.load(file)
     
     #predict
-    prediction = trained_model.predict(test_data)
-    
-    return prediction
-    
-    pass
+    prediction = trained_model.predict(new_data)
 
+    try:
+        if (prediction[0] == "satisfied"):
+            display_color = "#47b28d"
+        elif (prediction[0] == "dissatisfied"):
+            display_color = "#f0735a"
+
+    except:
+        pass
+
+    return render_template('index_predict.html', prediction = prediction[0], 
+    color=display_color, 
+    dd0=deafault_dict["Gender"],
+    dd1=deafault_dict["Customer Type"],
+    dd2=deafault_dict["Age"],
+    dd3=deafault_dict["Type of Travel"],
+    dd4=deafault_dict["Class"],
+    dd5=deafault_dict["Inflight entertainment"],
+    dd6=deafault_dict["Seat comfort"],
+    dd7=deafault_dict["On-board service"],
+    dd8=deafault_dict["Checkin service"],
+    anchor="TagIWantToLoadTo")
     
 if __name__ == '__main__':
     app.run(debug=True)

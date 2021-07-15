@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <title>We Believe We Can Fly</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../static/css/style.css">
+
+</head>
+
+
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <div class="hearder_content">
+        <span onclick="openNav()"><img class="icon" src="../static/css/headericon.png" alt="icon" style="width:50px;height:50px;"></span>
+      </div>
+    </header>
+
+    <div id="mySidenav" class="sidenav">
+      <br>
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="padding-top:60px;">&times;</a>
+      <a href="{{ url_for('.home') }}"><i class="fa fa-fw fa-plane"></i> Home</a>
+      <a href="{{ url_for('.predict_page') }}"><i class="fa fa-fw fa-address-book"></i> Predict Your Customer</a>
+      <a href="#"><i class="fa fa-fw fa-users"></i> Customer Profiles</a>
+      <ul style="padding-left: 25px;">
+        <a href="{{ url_for('.customer1') }}" style="font-size: 14px;"><i class="fa fa-fw fa-star"></i> Loyal Customer</a>
+        <a href="{{ url_for('.customer2') }}" style="font-size: 14px;"><i class="fa fa-fw fa-suitcase"></i> Business Class Customer</a>
+        <a href="{{ url_for('.customer3') }}" style="font-size: 14px;"><i class="fa fa-fw fa-user"></i> Eco Plus Class Loyal Customer</a>
+        <a href="{{ url_for('.customer4') }}" style="font-size: 14px;"><i class="fa fa-fw fa-star-o"></i> Eco Plus Class Disloyal Customer</a>
+      </ul>
+    </div>
+
+
+    <div class="hero-customer text-center">
+      <h1>Airline Satisfaction Report</h1>
+    </div>
+
+    <section class="section textbox-light">
+        <div class="row">
+          <div class="col-lg-3 customer">
+            <a href="{{ url_for('.customer1') }}">
+              <img class="profile" src="../static/css/mrhappy.png" style="width:100px;height:100px;">
+            </a>
+            <h4>Loyal Customer</h4>
+            <p>Description of the customer profile</p>
+          </div>
+
+          <div class="col-lg-3 customer">
+            <a href="{{ url_for('.customer2') }}">
+              <img class="profile" src="../static/css/missgrumpy.png" style="width:100px;height:100px;">
+            </a>
+            <h4>Business Class Customer</h4>
+            <p>Description of the customer profile</p>
+          </div>
+
+          <div class="col-lg-3 customer">
+            <a href="{{ url_for('.customer3') }}">
+              <img class="profile" src="../static/css/missSplendid.png" style="width:100px;height:100px;">
+            </a>
+            <h4>Eco Plus Loyal Customer</h4>
+            <p>Description of the customer profile</p>
+          </div>
+
+          <div class="col-lg-3 customer">
+            <a href="{{ url_for('.customer4') }}">
+              <img class="profile" src="../static/css/disloyal.png" style="width:100px;height:100px;">
+            </a>
+            <h4>Eco Plus Disloyal Customer</h4>
+            <p>Description of the customer profile</p>
+          </div>
+        </div>
+
+        <hr>
+      
+        <div>
+          <h2>Eco Plus Class Loyal Customer</h2>
+          <p>Charts</p>
+        </div>
+
+      </div>
+    </section>
+  
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="../static/js/sidebar.js"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/chart.js') }}"></script>
+  <!-- <script src="static/js/data.js"></script>
+  <script src="static/js/app.js"></script> -->
+</body>
+
+</html>
+
+
+
