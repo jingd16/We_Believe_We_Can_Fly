@@ -6,6 +6,7 @@
   <title>We Believe We Can Fly</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../static/css/style.css">
 </head>
 
@@ -36,45 +37,16 @@
 
     <a id="Top"></a>
     <div class="hero-predict text-center" id="header1">
-      <h1>Predict Your Customer</h1>
+      <!-- <h1>Predict Your Customer</h1> -->
     </div>
 
     <section class="section">
-      <div class="textbox-light">
-        <h3 style="text-align: center;">Model Overview</h3>
-
-        <br>
-        <p class="indent">
-              We used two machine learning models in order to create the customer satisfaction prediction tool. Below image shows the correlation 
-          between different factors affecting the customer satisfaction including the demographic details and different measures of satisfaction 
-          of services related to air travel.
-        </p>
-        <img style="margin-left: 20%;" src="../static/css/correlation.png" alt="correlation" width="1007" height="451">
-        <br><br>
-        <p class="indent"> 
-              Trials of various machine learning models including logistic regression, decision tree, 
-          random forrest and neural network shown that the last 3 have accuracy of over 90%. For the final prediction tool we are using 
-          random forrest with 200 estimators, because it has 95% score while still being relatively simple and not taking that much time to load 
-          as neural network. Logistic Regession model allows to determine which parameters have the most effect on the final prediction outcome, 
-          however the overall model score is 75%. Logistic Regession shows that the following services have the biggest impact on the prediction outcome:
-          Inflight entertainment, Seat comfort, On-board service, Checkin service, therefore we selected these four for our prediction tool. 
-        </p>
-      </div>
-    </section>
-
-    <section class="section">
-
-      <div class="predict-header">
-        <h2 style="text-align: center;">Predict Customer Satisfaction</h3>
-      </div>
-
 
       <div class="textbox-light" id="exactlocation">
         <a id="TagIWantToLoadTo">
         <form class="form-horizontal" action="{{ url_for('predict') }}" method="post">
-          
-          <br><br>
-
+          <h2 style="text-align: center;">Predict Your Customer</h2>
+          <br>
           <h4 style="text-align: center;">Select Demographic Parameters:</h4>
           
           <br><br><br>
