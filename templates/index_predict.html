@@ -25,7 +25,7 @@
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="padding-top:60px;">&times;</a>
       <a href="{{ url_for('.home') }}"><i class="fa fa-fw fa-plane"></i> Home</a>
       <a href="{{ url_for('.predict_page') }}"><i class="fa fa-fw fa-address-book"></i> Predict Your Customer</a>
-      <a href="#"><i class="fa fa-fw fa-users"></i> Customer Profiles</a>
+      <a href="{{ url_for('.customer1') }}"><i class="fa fa-fw fa-users"></i> Customer Profiles</a>
       <ul style="padding-left: 25px;">
         <a href="{{ url_for('.customer1') }}" style="font-size: 14px;"><i class="fa fa-fw fa-star"></i> Loyal Customer</a>
         <a href="{{ url_for('.customer2') }}" style="font-size: 14px;"><i class="fa fa-fw fa-suitcase"></i> Business Class Customer</a>
@@ -46,6 +46,12 @@
         <a id="TagIWantToLoadTo">
         <form class="form-horizontal" action="{{ url_for('predict') }}" method="post">
           <h2 style="text-align: center;">Predict Your Customer</h2>
+          <br>
+          <p>Our dataset contains 23 features that affects the satisfaction, however we could not utilise all features onto the website for prediction.
+            Therefore for the purpose of allowing website visitors to predict their own customers, we decided to display the features that have the most weight.
+            You can view the correlation between the features below:</p>
+          <br>
+          <img src="../static/css/correlation.png" alt="correlation" style="margin-left: 10%;">
           <br>
           <h4 style="text-align: center;">Select Demographic Parameters:</h4>
           

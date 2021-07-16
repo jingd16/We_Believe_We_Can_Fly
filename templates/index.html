@@ -26,7 +26,7 @@
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="padding-top:60px;">&times;</a>
       <a href="{{ url_for('.home') }}"><i class="fa fa-fw fa-plane"></i> Home</a>
       <a href="{{ url_for('.predict_page') }}"><i class="fa fa-fw fa-address-book"></i> Predict Your Customer</a>
-      <a href="#"><i class="fa fa-fw fa-users"></i> Customer Profiles</a>
+      <a href="{{ url_for('.customer1') }}"><i class="fa fa-fw fa-users"></i> Customer Profiles</a>
       <ul style="padding-left: 25px;">
         <a href="{{ url_for('.customer1') }}" style="font-size: 14px;"><i class="fa fa-fw fa-star"></i> Loyal Customer</a>
         <a href="{{ url_for('.customer2') }}" style="font-size: 14px;"><i class="fa fa-fw fa-suitcase"></i> Business Class Customer</a>
