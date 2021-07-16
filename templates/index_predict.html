@@ -42,24 +42,31 @@
 
     <section class="section">
 
+      <div class="textbox-light">
+
+        <h2 style="text-align: center;">Predict Your Customer</h2>
+        <br>
+        <p class="indent">Our dataset contains over 20 features that affect the customer satisfaction. The image below shows correlations between them. Since not all 
+          features have the same impact on the satisfaction, we decided to use the Logistic Regression model in order to find the ones with the most weight. We utilised 
+          them in the customer prediction toll which allows users to find out of whether their customers will be satisfied or not.
+          </p>
+        <br>
+        <img src="../static/css/correlation.png" alt="correlation" style="margin-left: 20%;">
+        <br>
+
       <div class="textbox-light" id="exactlocation">
-        <a id="TagIWantToLoadTo">
+        <a id="TagIWantToLoadTo"></a>
         <form class="form-horizontal" action="{{ url_for('predict') }}" method="post">
-          <h2 style="text-align: center;">Predict Your Customer</h2>
-          <br>
-          <p>Our dataset contains 23 features that affects the satisfaction, however we could not utilise all features onto the website for prediction.
-            Therefore for the purpose of allowing website visitors to predict their own customers, we decided to display the features that have the most weight.
-            You can view the correlation between the features below:</p>
-          <br>
-          <img src="../static/css/correlation.png" alt="correlation" style="margin-left: 10%;">
-          <br>
+
+
           <h4 style="text-align: center;">Select Demographic Parameters:</h4>
           
           <br><br><br>
 
           <div class="row">
-
-            <div class="col">
+          
+        
+          <div class="col">
               <label class="control-label" for="gender">Gender:</label>
               <select name="gender" id="gender" class="form-control">
                 <option value="1" {% if dd0 == 1 %} selected {% endif %} >Male</option>
@@ -109,6 +116,8 @@
           </div>
 
           <br><br><br><br>
+
+        
 
           <h4 style="text-align: center;">Select Services Satisfaction Level:</h4>
 
@@ -179,6 +188,7 @@
           </div>
 
         </form>
+      </div>
 
       </div>
     </section>
