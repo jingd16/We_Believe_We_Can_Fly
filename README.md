@@ -6,7 +6,7 @@ The purpose of this project was to utilise Machine Learning models in order to a
 
 # Data
 
-There are two key source of data used:
+There are two key sources of data used:
 
 * [airlines-customer-satisfaction](https://www.kaggle.com/sjleshrac/airlines-customer-satisfaction) - kaggle dataset used for analysis with data from non-disclosed airline organization, which consists of the details of customers, feedback of the customers on various context and their flight data.
 
